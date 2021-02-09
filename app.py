@@ -139,5 +139,39 @@ def search():
                     'has_prev': posts.has_prev, 'prev_page': posts.prev_num, 'length': len(result)}), 200
 
 
+@app.route("/list", methods=['GET'])
+def list():
+    """
+    Get list of YT Search result from database in desc order by published_at field
+    :return: JSON with list of results, next and previous page status
+    """
+
+    page_limit = app.config['PAGINATION_LIMIT']
+    page = request.args.get('page') if 'page' in request.args else 1
+    per_page = request.args.get('per_page') if 'per_page' in request.args else page_limit
+
+    # TODO: Can be done in much more elegant way
+    try:
+        page = int(page)
+    except:
+        page = 1
+
+    try:
+        per_page = int(per_page)
+    except:
+        per_page = page_limit
+    if per_page > page_limit:
+        per_page = page_limit
+
+    # Get all rows and order by published datetime and paginate by page count and per_page
+    posts = YTSearch.query.order_by(desc(YTSearch.published_at)) \
+        .paginate(page, per_page, error_out=True)
+
+    # Get JSON data from list of objects
+    result = [i.serialize() for i in posts.items]
+    return jsonify({'data': result, 'has_next': posts.has_next, 'next_page': posts.next_num,
+                    'has_prev': posts.has_prev, 'prev_page': posts.prev_num, 'length': len(result)}), 200
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
