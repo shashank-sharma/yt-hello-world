@@ -1,0 +1,2 @@
+class NoTokenFound(Exception):
+    pass
