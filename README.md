@@ -111,3 +111,40 @@ Response:
     "prev_page": 2
 }
 ```
+
+3. /list: GET - Get all data in pagination. Available parameters are `per_page` and `page`
+
+http://localhost:5000/list?per_page=2&page=2
+
+Response:
+```
+{
+    "data": [
+        {
+            "channel_id": "UCClK5D4DrAihWMeMaSA1rpA",
+            "channel_title": "Everbloom Games",
+            "description": "Learn More: https://everbloomgames.com/maps/anime-mash-up/ Explore a massive anime city! Our city features a giant robot boss battle, detailed interiors, ...",
+            "published_at": "Tue, 09 Feb 2021 18:18:18 GMT",
+            "published_time": "Tue, 09 Feb 2021 18:18:18 GMT",
+            "thumbnail": "https://i.ytimg.com/vi/NtY9lHDBXIA/default.jpg",
+            "title": "Anime Mash-up - Minecraft Marketplace Mash-up Trailer",
+            "video_id": "NtY9lHDBXIA"
+        },
+        {
+            "channel_id": "UCF-viuvv9jqcsWBKTkCZiQw",
+            "channel_title": "Guibel Reviews",
+            "description": "Bienvenidos a mi canal! TWITCH: https://www.twitch.tv/guibelreviewsli​​​​... PATREON PICANTE: https://www.patreon.com/guibelreviews​​​​... Esperamos ...",
+            "published_at": "Tue, 09 Feb 2021 18:00:13 GMT",
+            "published_time": "Tue, 09 Feb 2021 18:00:13 GMT",
+            "thumbnail": "https://i.ytimg.com/vi/wUgxh8Px074/default.jpg",
+            "title": "LOS PEORES AMIGOS EN LA HISTORIA DEL ANIME",
+            "video_id": "wUgxh8Px074"
+        }
+    ],
+    "has_next": true,
+    "has_prev": true,
+    "length": 2,
+    "next_page": 3,
+    "prev_page": 1
+}
+```
